@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Alert, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import api from '../../services/Api';
 import useAuth from '../../services/useAuth';
 
@@ -27,25 +27,30 @@ const Login = () => {
 
     try {
       const response = await api.post(LOGIN_URL,
-        JSON.stringify({email , password}),
+        {email , password},
+        {
+          headers: {'Content-Type': 'application/json'},
+        }
       );
-      console.log(response.data)
-      console.log(response.data.token)
-      setAuth( response.data ) 
-      //setPassword('');
-      //setEmail('');
+      // api.defaults.headers.common["Authorization"] = `Bearer ${response.data.tokens.access}`
+      console.log(response.data.tokens)
+      
+      setAuth(response.data)
+      // setPassword('');
+      // setEmail('');
       navigate(from, {replace: true});
     } catch (error) {
       if(error.response){
         if(error.response.status === 401){
-          Alert("Unrecognized Credentials!");
+          window.alert("Unrecognized Credentials!");
         }else{
-          Alert("Error on server, try again later");
+          window.alert("Error on server, try again later");
         }
       }else if(error.request){
-        Alert("No Response from server, try again later");
+        window.alert("No Response from server, try again later");
       }else{
-        Alert("Unknown error!");
+        console.error(error)
+        window.alert("Unknown error!");
       }
     }
   }
@@ -64,7 +69,7 @@ const Login = () => {
                 type="email" 
                 id="email"
                 placeholder="Enter email" 
-                autocomplete="off"
+                autoComplete="off"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 required

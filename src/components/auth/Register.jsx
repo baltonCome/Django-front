@@ -14,7 +14,7 @@ const REGISTER_URL = '/auth/signup/';
 const Register = () => {
 
   const[name, setName] = useState('');
-  const[match, setMatch] = useState(false);
+  const[match, setMatch] = useState('');
   const[validMatch, setValidMatch] = useState(false);
   const[email, setEmail] = useState('');
   const[password, setPassword] = useState('');
@@ -34,8 +34,7 @@ const Register = () => {
     }
 
     try{
-      const response = await api.post(REGISTER_URL, 
-      JSON.stringify({email, username: name, password }))
+      const response = await api.post(REGISTER_URL, {email: email, username: name, password:password },)
       console.log(response.data);
       console.log(response.accessToken);
       console.log(JSON.stringify(response))
@@ -69,7 +68,7 @@ const Register = () => {
             <Form onSubmit={handleSubmit} className="row">
               <Form.Group className="mb-3">
                 <Form.Label htmlFor='name'> 
-                 Name
+                 Username
                 </Form.Label>
                 <Form.Control 
                   id="name"
