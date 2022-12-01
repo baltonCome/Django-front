@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../components/Navbar';
+import Navbar from '../components/Navmenu';
 import Footer from '../components/Footer';
 import Container from 'react-bootstrap/esm/Container';
 import Col from 'react-bootstrap/esm/Col';
@@ -11,6 +11,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import FetchPosts from '../components/FetchPosts';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { FaSearch } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
@@ -38,6 +39,7 @@ const Home = () => {
 									{
 										areas.map((area, index) => (
 											<ListGroup.Item id={index} className="border-0">
+											<Link />
 											<Form.Check 
 												type="checkbox"
 												id={index}

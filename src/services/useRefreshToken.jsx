@@ -6,9 +6,7 @@ const useRefreshToken = () => {
     const { setAuth } = useAuth();
     
     const refresh = async () => {
-        const response = await api.get('/refresh', {
-            withCredentials: true
-        });
+        const response = await api.get('/auth/jwt/refresh/');
         setAuth(prev => {
             console.log(JSON.stringify(prev));
             console.log(response.data.tokens.access);
@@ -19,5 +17,5 @@ const useRefreshToken = () => {
 
     return refresh;
 }
-
+ 
 export default useRefreshToken;

@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/Navmenu';
 import { useState, useEffect, useRef } from 'react';
 import Select from 'react-select';
 import Col from 'react-bootstrap/Col';
@@ -9,9 +9,16 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import useAuth from '../services/useAuth';
+import api from '../services/Api';
+import { useNavigate} from 'react-router-dom';
 
 const NewPost = () => {
 
+    const NEW_POST = '/posts/new';
+
+    const navigate = useNavigate();
+    
     const [title, setTitle] = useState([]);
     const [topic, setTopic] = useState([]);
     const [description, setDescription] = useState('');
@@ -40,8 +47,33 @@ const NewPost = () => {
         titleRef.current.focus();
     },[])
 
+    const { auth } = useAuth();
+
     const handleSubmit = async (e) =>{
         
+        e.preventDefault();
+
+        try {
+            await api.post(NEW_POST,
+                {
+                    title, topic: topic+"" ,content: description, link, procedure 
+                },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${auth.tokens.access}`
+                    }
+                }
+            )            
+            navigate("/")
+        } catch (error) {
+            if(error.response){
+                window.alert("Error on server, try again later");
+            }else if(error.request){
+                window.alert("No Response from server, try again later");
+            }else{
+                console.error(error)
+            }
+        }
     }
 
     return ( 

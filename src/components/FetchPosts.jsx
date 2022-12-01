@@ -6,15 +6,15 @@ import api from '../services/Api';
 
 const FetchPosts = () => {
 
-    const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState([])
 
-    useEffect( () => {
-        api.get('posts/')
-        .then((res) => {
-          setPosts(res.data)
-        })
-        .catch(error => console.log(error))
-    }, [])
+  useEffect( () => {
+    api.get('posts/all')
+    .then((res) => {
+      setPosts(res.data.data)
+    })
+    .catch(error => console.log(error))
+  }, [])
 
     const [pageNumber, setPageNumber] = useState(0);
     const dataPerPage = 4;
@@ -28,8 +28,7 @@ const FetchPosts = () => {
     return (
         <Container>
         { posts && (
-            posts
-            .slice(seenPages, seenPages + dataPerPage)
+            posts.slice(seenPages, seenPages + dataPerPage)
             .map((post) => (
             <Post
               key={post.id}

@@ -13,7 +13,7 @@ const useAxiosPrivate = () => {
         const requestIntercept = apiPrivate.interceptors.request.use(
             config => {
                 if(!config.headers['Authorization']){
-                    config.headers['Authorization'] = `Bearer ${auth?.tokens.access}`;
+                    config.headers['Authorization'] = `Bearer ${auth?.tokens?.access}`;
                 }
                 console.log(config)
                 return config;
@@ -33,7 +33,7 @@ const useAxiosPrivate = () => {
                 return Promise.reject(error);
             }
         );
-
+ 
         return () =>{
             apiPrivate.interceptors.request.eject(requestIntercept);
             apiPrivate.interceptors.response.eject(responseIntercept);

@@ -1,7 +1,6 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
 import Badge from 'react-bootstrap/Badge'
-import Button from 'react-bootstrap/Button'
 import moment from 'moment';
 import ReadMore from 'read-more-react';
 import Container from 'react-bootstrap/Container';
@@ -42,7 +41,6 @@ const Post = ({ post }) => {
                                     </Badge>
                                 )) 
                             } 
-                            <Button variant='primary' className="float-end"> Apply </Button>
                         </div>  
                     </Card.Body>
                 </Card>

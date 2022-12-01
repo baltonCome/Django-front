@@ -14,6 +14,7 @@ const LOGIN_URL = '/auth/login/'
 const Login = () => {
 
   const { setAuth } = useAuth();
+
   const [email, setEmail] = useState('') ;
   const [password, setPassword] = useState('');
 
@@ -28,29 +29,16 @@ const Login = () => {
     try {
       const response = await api.post(LOGIN_URL,
         {email , password},
-        {
-          headers: {'Content-Type': 'application/json'},
-        }
       );
-      // api.defaults.headers.common["Authorization"] = `Bearer ${response.data.tokens.access}`
-      console.log(response.data.tokens)
-      
       setAuth(response.data)
-      // setPassword('');
-      // setEmail('');
       navigate(from, {replace: true});
     } catch (error) {
       if(error.response){
-        if(error.response.status === 401){
-          window.alert("Unrecognized Credentials!");
-        }else{
-          window.alert("Error on server, try again later");
-        }
+        window.alert("Error on server, try again later");
       }else if(error.request){
         window.alert("No Response from server, try again later");
       }else{
         console.error(error)
-        window.alert("Unknown error!");
       }
     }
   }
