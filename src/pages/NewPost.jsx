@@ -34,8 +34,8 @@ const NewPost = () => {
 
     const topics = [
         { value: 'Network' ,label: 'Network' },
-        { value: 'Dev', label:'Development' },
-        { value: 'Data', label: 'Datacenter' },
+        { value: 'Development', label:'Development' },
+        { value: 'Datacenter', label: 'Datacenter' },
         { value: 'Cloud', label: 'Cloud' },
     ];
 
@@ -56,7 +56,7 @@ const NewPost = () => {
         try {
             await api.post(NEW_POST,
                 {
-                    title, topic: topic+"" ,content: description, link, procedure 
+                    title, topic: topic.value ,content: description, link, procedure 
                 },
                 {
                     headers: {
@@ -147,8 +147,8 @@ const NewPost = () => {
                                                 onBlur={ () => setDescriptionFocus(false)}
                                                 ref={descriptionRef}>
                                             </Form.Control>
-                                            <p className= { descriptionFocus && (description.length < 100) ? "small text-muted" : "d-none" }>
-                                                Escreva uma descrição de pelo menos 100 caracteres!
+                                            <p className= { descriptionFocus && (description.length < 40) ? "small text-muted" : "d-none" }>
+                                                Escreva uma descrição de pelo menos 40 caracteres!
                                             </p>
                                         </FloatingLabel>
                                     </Col>

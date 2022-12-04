@@ -26,11 +26,14 @@ const Post = ({ post }) => {
                             </div>  
                         </Card.Title>
                         <Card.Subtitle>
-                            <h6 className="mb-2">
+                            <h5 className="mb-2">
+                                {post.topic}
+                            </h5>
+                            <p className="mb-2">
                                 {post.content}
-                            </h6>
+                            </p>
                         </Card.Subtitle>
-                        <Card.Text>
+                        <Card.Text className="bg-secondary p-2 text-light">
                             <ReadMore text= { post.procedure } readMoreText="Read More!"/>
                         </Card.Text>
                         <div>

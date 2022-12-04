@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../components/Navmenu';
 import Footer from '../components/Footer';
 import Container from 'react-bootstrap/esm/Container';
@@ -6,22 +6,20 @@ import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import FetchPosts from '../components/FetchPosts';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
 
+	const [searchKey, setSearchKey] = useState([]) 
+
     const areas = [
         { value: 'Development' },
-        { value: 'Cloud' }, 
-        { value: 'Structure' },
-        { value: 'Excel' },
+        { value: 'Cloud' },
         { value: 'Datacenter' },
-        { value: 'Network & Connections' },
+        { value: 'Network' },
     ];
 
 
@@ -44,6 +42,8 @@ const Home = () => {
 												type="checkbox"
 												id={index}
 												label={ area.value }
+												onChange={(e) => setSearchKey(e.target.value)}
+												value={area.value}
 											/>
 											</ListGroup.Item>
 										)) 
@@ -60,12 +60,13 @@ const Home = () => {
 									placeholder="Search"
 									className="rounded-pill"
 									aria-label="Search"
+									value={searchKey}
+									onChange={(e) => setSearchKey(e.target.value)}
 								/>
-								<Button className="rounded-pill"> <FaSearch /> </Button>
 							</Form>
 						</div>
 						<div>
-							<FetchPosts />
+							<FetchPosts searchKey = {searchKey}/>
 						</div>
 					</Col>
 				</Row>
