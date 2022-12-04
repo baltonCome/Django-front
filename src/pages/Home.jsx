@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navmenu';
 import Footer from '../components/Footer';
 import Container from 'react-bootstrap/esm/Container';
@@ -42,8 +42,9 @@ const Home = () => {
 												type="checkbox"
 												id={index}
 												label={ area.value }
-												onChange={(e) => setSearchKey(e.target.value)}
+												onChange={(e) => setSearchKey(e.target.value.toLowerCase())}
 												value={area.value}
+												checked={ searchKey === area.value }
 											/>
 											</ListGroup.Item>
 										)) 
