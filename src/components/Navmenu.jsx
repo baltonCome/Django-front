@@ -5,8 +5,14 @@ import { NavLink } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import useAuth from '../services/useAuth';
 
 const Navmenu = () => {
+
+    const { auth, setAuth } = useAuth();
+
+    console.log(auth);
+
     return (
         <Navbar bg="light" expand="lg" sticky='top'>
         <Container fluid>
@@ -30,10 +36,9 @@ const Navmenu = () => {
             </Offcanvas.Header>
             <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                    <NavLink className="link-primary btn " to="/"> Posts
-                    </NavLink>
-                    <NavLink className="link-primary btn" to="/newpost"> New Post
-                    </NavLink>
+                    <NavLink className="link-primary" to="/"> Posts </NavLink>
+                    <NavLink className="link-primary" to="/newpost"> New Post </NavLink>
+                    { auth?.tokens?.access ? <NavLink className="link-primary mx-2" to="/" onClick={(e) => setAuth({})}>Logout</NavLink> : <NavLink className="link-primary mx-2" to="/login">Login</NavLink> }
                 </Nav>
             </Offcanvas.Body>
             </Navbar.Offcanvas>

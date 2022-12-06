@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Alert } from 'react-bootstrap';
 import api from '../../services/Api';
+import { useNavigate, useLocation} from 'react-router-dom';
 
 const REGISTER_URL = '/auth/signup/';
 
@@ -18,6 +19,10 @@ const Register = () => {
   const[validMatch, setValidMatch] = useState(false);
   const[email, setEmail] = useState('');
   const[password, setPassword] = useState('');
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/login";
 
   useEffect(() => {
 
@@ -42,6 +47,7 @@ const Register = () => {
       setPassword('');
       setEmail('');
       setMatch('');
+      navigate(from, {replace: true});
     }catch(error){
       if(error.response){
         if(error.response.status === 422){

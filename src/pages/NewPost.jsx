@@ -25,7 +25,8 @@ const NewPost = () => {
     const [link, setLink] = useState('');
     const [procedure, setProcedure] = useState('');
     const [linkExplainFocus, setLinkExplainFocus] = useState(false);
-    const [descriptionFocus, setDescriptionFocus] = useState(false);
+    const [descriptionFocus, setDescriptionFocus]
+     = useState(false);
     const [procedureFocus, setProcedureFocus] = useState(false);
     const titleRef = useRef();
     const descriptionRef = useRef();

@@ -38,7 +38,7 @@ const Post = ({ post }) => {
                         </Card.Text>
                         <div>
                             {   
-                                links.map((links) => (
+                                links.map((link) => (
                                     <Badge pill bg='success' style = {{ margin: 2 }}>
                                         {link}
                                     </Badge>
