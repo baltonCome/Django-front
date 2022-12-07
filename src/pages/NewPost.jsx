@@ -68,7 +68,11 @@ const NewPost = () => {
             navigate("/")
         } catch (error) {
             if(error.response){
-                window.alert("Error on server, try again later");
+                if(error.response.status === 403){
+                    navigate('/unauthorized')
+                }else{
+                    window.alert("Error on server, try again later");
+                }
             }else if(error.request){
                 window.alert("No Response from server, try again later");
             }else{

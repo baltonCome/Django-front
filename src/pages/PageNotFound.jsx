@@ -11,6 +11,7 @@ const PageNotFound = () => {
                 The page you’re looking for doesn’t exist.
             </p>
             <Link to="/" class="btn btn-primary">Go Home</Link>
+            <Link to="/login" class="btn btn-primary">Login</Link>
         </div>
     </div>
   )

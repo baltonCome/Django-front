@@ -11,8 +11,6 @@ const Navmenu = () => {
 
     const { auth, setAuth } = useAuth();
 
-    console.log(auth);
-
     return (
         <Navbar bg="light" expand="lg" sticky='top'>
         <Container fluid>
@@ -38,7 +36,7 @@ const Navmenu = () => {
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                     <NavLink className="link-primary" to="/"> Posts </NavLink>
                     <NavLink className="link-primary" to="/newpost"> New Post </NavLink>
-                    { auth?.tokens?.access ? <NavLink className="link-primary mx-2" to="/" onClick={(e) => setAuth({})}>Logout</NavLink> : <NavLink className="link-primary mx-2" to="/login">Login</NavLink> }
+                    { auth?.data?.access ? <NavLink className="link-primary mx-2" to="/" onClick={(e) => setAuth({})}>Logout</NavLink> : <NavLink className="link-primary mx-2" to="/login">Login</NavLink> }
                 </Nav>
             </Offcanvas.Body>
             </Navbar.Offcanvas>

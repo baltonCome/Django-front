@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
 
-	const [searchKey, setSearchKey] = useState([]) 
+	const [searchKey, setSearchKey] = useState([]);
 
     const areas = [
         { value: 'Development' },

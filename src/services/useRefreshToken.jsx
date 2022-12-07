@@ -8,20 +8,13 @@ const useRefreshToken = () => {
     
     const refresh = async () => {
         const response = await api.post('/auth/jwt/refresh/',{
-            refresh: auth?.tokens?.refresh
-        },
-        {
-            withCredentials: true,
+            refresh: auth?.data?.refresh
         });
-        console.log(response.data.access)
         setAuth(prev => {
-            console.log(JSON.stringify(prev));
-            console.log(response.data.access);
-            return { ...prev, token: response.data.access }
+            return { ...prev, data: response.data }
         });
-        return response.data.access;
+        return response?.data;
     }
-
     return refresh;
 }
  
